@@ -4,7 +4,12 @@ An open source portfolio made in react with framer motion and tailwand css.
 ## Starting
 To start off, you need to fork this repository
 ```bash
-git clone https://github.com/
+git clone https://github.com/vansencool/Portfolio.git
+```
+
+and install
+```bash
+npm install framer-motion react-icons react-toastify tailwindcss@latest postcss@latest autoprefixer@latest
 ```
 
 and then, you can run:
