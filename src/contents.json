@@ -1,0 +1,51 @@
+{
+  "name": "vansencool",
+  "title": "Java Developer | Plugin Creator | Full-Stack Developer",
+  "about": [
+    "Hi there! I'm a passionate developer with a love for technology and problem-solving. Over the years, I've honed my skills in various programming languages and frameworks, always striving to learn and grow.",
+    "My journey began with a fascination for Minecraft plugins, which eventually led me to explore the world of full-stack development. I've built applications that have touched the lives of thousands of users, and I'm always eager to tackle new challenges and learn more.",
+    "In my free time, I enjoy experimenting with new technologies and staying up-to-date with industry trends. Whether it's learning a new programming language, exploring emerging frameworks, or honing my design skills, I'm always looking for ways to improve and grow as a developer.",
+    "I'm excited to work on projects that align with my values and help people achieve their goals. If you have any cool ideas or projects in mind, I'd love to chat and see how we can make them a reality together!"
+  ],
+  "discordUsername": "vansencool",
+  "githubUsername": "vansencool",
+  "theme": {
+    "bg": "#0a0a1f",
+    "card": "#12122a",
+    "text": "#ffffff",
+    "subtext": "#a0a0a0",
+    "highlight": "#ff3399",
+    "glow": "0 0 20px rgba(255, 51, 153, 0.5)",
+    "cardGlow": "0 0 30px rgba(255, 51, 153, 0.2)",
+    "scrollTrack": "#0a0a1f",
+    "scrollThumb": "#12122a",
+    "scrollThumbHover": "#ff3399"
+  },
+  "skills": [
+    { "name": "Java", "icon": "FaJava" },
+    { "name": "HTML", "icon": "SiHtml5" },
+    { "name": "CSS", "icon": "SiCss3" },
+    { "name": "JavaScript", "icon": "SiJavascript" },
+    { "name": "React", "icon": "SiReact" },
+    { "name": "Node.js", "icon": "SiNodedotjs" },
+    { "name": "SQL", "icon": "SiMysql" },
+    { "name": "MongoDB", "icon": "SiMongodb" },
+    { "name": "Git", "icon": "SiGit" }
+  ],
+  "projects": [
+    {
+      "name": "Well Arenas",
+      "description": "An extensive arena regenerator plugin",
+      "details": "A feature-rich plugin with high performance capabilities for regenerating arenas.",
+      "technologies": ["Java", "Paper API"],
+      "link": "https://builtbybit.com/resources/well-arenas.46731/"
+    },
+    {
+      "name": "Well Staff (upcoming)",
+      "description": "An enhanced staff management system for Minecraft servers",
+      "details": "A solution for server staffs to monitor the server/or players, with a extensive configuration.",
+      "technologies": ["Java", "Paper API", "MySQL"],
+      "link": "https://builtbybit.com/resources/well-staff.46730/"
+    }
+  ]
+}

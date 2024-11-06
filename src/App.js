@@ -1,64 +1,13 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaDiscord, FaExternalLinkAlt, FaJava } from 'react-icons/fa';
-import { SiHtml5, SiCss3, SiJavascript, SiReact, SiNodedotjs, SiMysql, SiMongodb, SiGit } from 'react-icons/si';
+import { FaGithub, FaDiscord, FaExternalLinkAlt } from 'react-icons/fa';
+import * as FaIcons from 'react-icons/fa';
+import * as SiIcons from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import contents from './contents.json';
 
-const portfolioContent = {
-  name: "vansencool",
-  title: "Java Developer | Plugin Creator | Full-Stack Developer",
-  about: [
-    "Hey! I'm a 20-year-old who's crazy about Java. I've been coding for about 4 years now, and it all kicked off with Minecraft plugins. What started as a fun hobby quickly became something I couldn't get enough of.",
-    "These days, my plugins are running on some awesome servers, making gameplay better for thousands of players. It's pretty cool to think about!",
-    "But you know what? I didn't want to stop there. I jumped into full-stack development and man, it's been a wild ride! I've been learning all sorts of new tech stuff. From making websites look great to setting up the behind-the-scenes magic, I love figuring out how to make everything work together smoothly.",
-    "Looking forward, I'm pumped to keep growing and learning. Whether it's making Minecraft plugins run faster or building big, complex websites, I'm all about making things that work great and are fun to use. Got any cool ideas? Let's team up and build something awesome!"
-  ],
-  discordUsername: "vansencool",
-  githubUsername: "vansencool",
-};
-
-const theme = {
-  bg: '#0a0a1f',
-  card: '#12122a',
-  text: '#ffffff',
-  subtext: '#a0a0a0',
-  highlight: '#ff3399',
-  glow: '0 0 20px rgba(255, 51, 153, 0.5)',
-  cardGlow: '0 0 30px rgba(255, 51, 153, 0.2)',
-  scrollTrack: '#0a0a1f',
-  scrollThumb: '#12122a',
-  scrollThumbHover: '#ff3399'
-};
-
-const skills = [
-  { name: 'Java', icon: FaJava },
-  { name: 'HTML', icon: SiHtml5 },
-  { name: 'CSS', icon: SiCss3 },
-  { name: 'JavaScript', icon: SiJavascript },
-  { name: 'React', icon: SiReact },
-  { name: 'Node.js', icon: SiNodedotjs },
-  { name: 'SQL', icon: SiMysql },
-  { name: 'MongoDB', icon: SiMongodb },
-  { name: 'Git', icon: SiGit }
-];
-
-const projects = [
-  {
-    name: 'Well Arenas',
-    description: 'An extensive arena regenerator plugin',
-    details: 'A feature-rich plugin with high performance capabilities for regenerating arenas.',
-    technologies: ['Java', "Paper API"],
-    link: 'https://builtbybit.com/resources/well-arenas.46731/'
-  },
-  {
-    name: 'Well Staff (upcoming)',
-    description: 'An enhanced staff management system for Minecraft servers',
-    details: 'A solution for server staffs to monitor the server/or players, with a extensive configuration.',
-    technologies: ['Java', 'Paper API', 'MySQL'],
-    link: 'https://builtbybit.com/resources/well-staff.46730/'
-  }
-];
+const { theme, skills, projects, ...portfolioContent } = contents;
 
 const SkillsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -108,37 +57,40 @@ const SkillsCarousel = () => {
             animate={controls}
             style={{ x: 0 }}
           >
-            {extendedSkills.map((skill, index) => (
-              <motion.div
-                key={`${skill.name}-${index}`}
-                className="flex flex-col items-center justify-center w-32 h-32 rounded-lg p-4 flex-shrink-0"
-                style={{
-                  backgroundColor: theme.card,
-                  boxShadow: theme.cardGlow,
-                }}
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: theme.glow,
-                }}
-              >
-                <skill.icon 
-                  className="w-12 h-12 mb-2" 
-                  style={{ 
-                    color: theme.highlight,
-                    filter: `drop-shadow(0 0 8px ${theme.highlight})`
-                  }} 
-                />
-                <span 
-                  className="text-center"
-                  style={{ 
-                    color: theme.text,
-                    textShadow: theme.glow
+            {extendedSkills.map((skill, index) => {
+              const Icon = FaIcons[skill.icon] || SiIcons[skill.icon];
+              return (
+                <motion.div
+                  key={`${skill.name}-${index}`}
+                  className="flex flex-col items-center justify-center w-32 h-32 rounded-lg p-4 flex-shrink-0"
+                  style={{
+                    backgroundColor: theme.card,
+                    boxShadow: theme.cardGlow,
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: theme.glow,
                   }}
                 >
-                  {skill.name}
-                </span>
-              </motion.div>
-            ))}
+                  <Icon 
+                    className="w-12 h-12 mb-2" 
+                    style={{ 
+                      color: theme.highlight,
+                      filter: `drop-shadow(0 0 8px ${theme.highlight})`
+                    }} 
+                  />
+                  <span 
+                    className="text-center"
+                    style={{ 
+                      color: theme.text,
+                      textShadow: theme.glow
+                    }}
+                  >
+                    {skill.name}
+                  </span>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>
@@ -147,21 +99,23 @@ const SkillsCarousel = () => {
 };
 
 const ProjectCard = ({ project }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [flipped, setFlipped] = useState(false);
 
   return (
     <div className="relative w-full h-64 perspective-1000">
       <motion.div
         className="relative w-full h-full cursor-pointer preserve-3d"
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        style={{ transformStyle: "preserve-3d" }}
+        animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.6 }}
-        onClick={() => setIsFlipped(!isFlipped)}
+        onClick={() => setFlipped(!flipped)}
       >
         <motion.div
-          className="absolute w-full h-full rounded-lg p-6 backface-hidden"
+          className="absolute w-full h-full rounded-lg p-6"
           style={{
             backgroundColor: theme.card,
             boxShadow: theme.cardGlow,
+            backfaceVisibility: "hidden",
           }}
         >
           <h3 className="text-xl font-bold mb-2" style={{ color: theme.text }}>
@@ -187,11 +141,12 @@ const ProjectCard = ({ project }) => {
           </div>
         </motion.div>
         <motion.div
-          className="absolute w-full h-full rounded-lg p-6 backface-hidden"
+          className="absolute w-full h-full rounded-lg p-6"
           style={{
             backgroundColor: theme.card,
             boxShadow: theme.cardGlow,
-            transform: 'rotateY(180deg)',
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
           }}
         >
           <h3 className="text-xl font-bold mb-2" style={{ color: theme.text }}>
@@ -245,26 +200,26 @@ const FloatingParticles = () => {
 };
 
 export default function Component() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [active, setActive] = useState('home');
   const sections = useMemo(() => ['home', 'about', 'skills', 'projects', 'contact'], []);
   const sectionRefs = useRef(sections.map(() => React.createRef()));
 
   useEffect(() => {
     const handleScroll = () => {
       const pageYOffset = window.pageYOffset;
-      let newActiveSection = sections[0];
+      let newActive = sections[0];
 
       sectionRefs.current.forEach((ref, index) => {
         const element = ref.current;
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (pageYOffset >= offsetTop - 100 && pageYOffset < offsetTop + offsetHeight - 100) {
-            newActiveSection = sections[index];
+            newActive = sections[index];
           }
         }
       });
 
-      setActiveSection(newActiveSection);
+      setActive(newActive);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -274,7 +229,7 @@ export default function Component() {
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
-    setActiveSection('home');
+    setActive('home');
 
     document.body.style.backgroundColor = theme.bg;
     document.body.style.color = theme.text;
@@ -313,6 +268,19 @@ export default function Component() {
     }
   };
 
+  const copyDiscord = () => {
+    navigator.clipboard.writeText(portfolioContent.discordUsername);
+    toast.success('Discord username copied!', {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className="min-h-screen relative" style={{ backgroundColor: theme.bg }}>
       <FloatingParticles />
@@ -321,18 +289,22 @@ export default function Component() {
           <ul className="flex justify-center space-x-6">
             {sections.map((section) => (
               <motion.li key={section}>
-                <button
+                <motion.button
                   onClick={() => scrollToSection(section)}
-                  className={`text-lg font-medium transition-colors`}
+                  className="text-lg font-medium"
                   style={{
-                    color: activeSection === section ? theme.highlight : theme.subtext,
-                    textShadow: activeSection === section ? theme.glow : 'none',
+                    color: active === section ? theme.highlight : theme.subtext,
+                    textShadow: active === section ? theme.glow : 'none',
                   }}
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    color: theme.highlight,
+                    textShadow: theme.glow
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
-                </button>
+                </motion.button>
               </motion.li>
             ))}
           </ul>
@@ -348,7 +320,7 @@ export default function Component() {
             className="min-h-screen flex items-center justify-center"
           >
             <AnimatePresence>
-              {activeSection === section && (
+              {active === section && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -400,18 +372,7 @@ export default function Component() {
                           <FaGithub className="w-8 h-8" />
                         </motion.a>
                         <motion.button
-                          onClick={() => {
-                            navigator.clipboard.writeText(portfolioContent.discordUsername);
-                            toast.success('Discord username copied!', {
-                              position: "bottom-right",
-                              autoClose: 3000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                            });
-                          }}
+                          onClick={copyDiscord}
                           className="p-3 rounded-full"
                           whileHover={{ scale: 1.1, boxShadow: theme.glow }}
                           style={{ 
@@ -485,7 +446,7 @@ export default function Component() {
                             color: theme.bg,
                             boxShadow: theme.cardGlow
                           }}
-                          onClick={() => window.open(`https://discord.com/users/${portfolioContent.discordUsername}`, '_blank')}
+                          onClick={copyDiscord}
                         >
                           Discord
                         </motion.button>
