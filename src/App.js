@@ -8,20 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 const portfolioContent = {
   name: "vansencool",
   title: "Java Developer | Plugin Creator | Full-Stack Developer",
-<<<<<<< HEAD
   about: [
     "Hey! I'm a 20-year-old who's crazy about Java. I've been coding for about 4 years now, and it all kicked off with Minecraft plugins. What started as a fun hobby quickly became something I couldn't get enough of.",
     "These days, my plugins are running on some awesome servers, making gameplay better for thousands of players. It's pretty cool to think about!",
     "But you know what? I didn't want to stop there. I jumped into full-stack development and man, it's been a wild ride! I've been learning all sorts of new tech stuff. From making websites look great to setting up the behind-the-scenes magic, I love figuring out how to make everything work together smoothly.",
     "Looking forward, I'm pumped to keep growing and learning. Whether it's making Minecraft plugins run faster or building big, complex websites, I'm all about making things that work great and are fun to use. Got any cool ideas? Let's team up and build something awesome!"
   ],
-=======
-  about: `I'm a passionate 20-year-old Java developer with over 4 years of experience in creating efficient and innovative solutions. My journey began with Minecraft plugin development, where I've built a reputation for delivering high-performance, feature-rich plugins that serve thousands of players daily.
-
-  Beyond plugin development, I've expanded my expertise to full-stack development, working with modern technologies and frameworks to create comprehensive solutions for various clients and projects.
-
-  My goal is to continue pushing the boundaries of what's possible in both Minecraft plugin development and web technologies, always striving to create exceptional user experiences and robust, scalable solutions.`,
->>>>>>> efbad3e (Initial commit)
   discordUsername: "vansencool",
   githubUsername: "vansencool",
 };
@@ -54,7 +46,6 @@ const skills = [
 const projects = [
   {
     name: 'Well Arenas',
-<<<<<<< HEAD
     description: 'An extensive arena regenerator plugin',
     details: 'A feature-rich plugin with high performance capabilities for regenerating arenas.',
     technologies: ['Java', "Paper API"],
@@ -66,26 +57,6 @@ const projects = [
     details: 'A solution for server staffs to monitor the server/or players, with a extensive configuration.',
     technologies: ['Java', 'Paper API', 'MySQL'],
     link: 'https://builtbybit.com/resources/well-staff.46730/'
-=======
-    description: 'Extensive arena regenerator plugin for Minecraft servers',
-    details: 'High-performance plugin with advanced regeneration capabilities',
-    technologies: ['Java', 'Bukkit API', 'MySQL'],
-    link: 'https://example.com/well-arenas'
-  },
-  {
-    name: 'Well Kits',
-    description: 'Comprehensive kit management system for practice servers',
-    details: 'Feature-rich plugin optimized for large-scale server networks',
-    technologies: ['Java', 'Spigot API', 'MongoDB'],
-    link: 'https://example.com/well-kits'
-  },
-  {
-    name: 'Portfolio Website',
-    description: 'Personal portfolio showcasing projects and skills',
-    details: 'Responsive design with modern React and animation libraries',
-    technologies: ['React', 'Framer Motion', 'Tailwind CSS'],
-    link: 'https://example.com/portfolio'
->>>>>>> efbad3e (Initial commit)
   }
 ];
 
@@ -465,11 +436,7 @@ export default function Component() {
                       >
                         About Me
                       </h2>
-<<<<<<< HEAD
                       {portfolioContent.about.map((paragraph, index) => (
-=======
-                      {portfolioContent.about.split('\n\n').map((paragraph, index) => (
->>>>>>> efbad3e (Initial commit)
                         <p key={index} className="text-lg mb-6" style={{ color: theme.subtext }}>
                           {paragraph}
                         </p>
